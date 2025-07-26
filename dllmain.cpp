@@ -151,8 +151,8 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
             // Add here your code, I recommend you to create a thread
 
             // replace 48 89 5C 24 08 to B0 00 C3 90 90
-            // at 00007FF74CCF7C80
-            size_t addr = 0x00007FF74CCF7C80;
+            // at Base+$147c80
+            size_t addr = reinterpret_cast<size_t>(GetModuleHandleA("SandMan.exe")) + 0x147c80;
             // check
             uint8_t original[5] = { 0x48, 0x89, 0x5C, 0x24, 0x08 };
             if (memcmp((void *) addr, original, 5) == 0) {

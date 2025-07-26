@@ -1,6 +1,6 @@
 SandMan.exe version: 1.15.12 x64 windows
 
-The hijacker component uses hard-coded addresses, so it may not match on your computer, so look for it manually!
+`RVA: 0x147c80`
 
 ```text
 00007FF74CCF7C80 | 48:895C24 08             | mov qword ptr ss:[rsp+0x8],rbx                           |
