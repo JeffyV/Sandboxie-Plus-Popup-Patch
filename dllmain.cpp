@@ -1,4 +1,6 @@
 #include <cstdint>
+#include <format>
+#include <vector>
 #include <Windows.h>
 
 #pragma region Proxy
@@ -138,6 +140,11 @@ void setupFunctions() {
 }
 #pragma endregion
 
+std::vector<size_t> RVAs = {
+    0x147c80, // 1.15.12
+    0x1948A0  // 1.16.2
+};
+
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
     switch (ul_reason_for_call) {
         case DLL_PROCESS_ATTACH: {
@@ -148,17 +155,18 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
             version.dll = LoadLibrary(path);
             setupFunctions();
 
-            // Add here your code, I recommend you to create a thread
+            for (size_t &rva: RVAs) {
+                size_t addr = reinterpret_cast<size_t>(GetModuleHandleA("SandMan.exe")) + rva;
 
-            // replace 48 89 5C 24 08 to B0 00 C3 90 90
-            // at Base+$147c80
-            size_t addr = reinterpret_cast<size_t>(GetModuleHandleA("SandMan.exe")) + 0x147c80;
-            // check
-            uint8_t original[5] = { 0x48, 0x89, 0x5C, 0x24, 0x08 };
-            if (memcmp((void *) addr, original, 5) == 0) {
-                // patch
-                uint8_t patch[] = { 0xB0, 0x00, 0xC3, 0x90, 0x90 };
-                WriteProcessMemory(GetCurrentProcess(), (void *) addr, patch, sizeof(patch), nullptr);
+                // check
+                uint8_t original[5] = { 0x48, 0x89, 0x5C, 0x24, 0x08 };
+                if (memcmp((void *) addr, original, 5) == 0) {
+                    // patch
+                    uint8_t patch[] = { 0xB0, 0x00, 0xC3, 0x90, 0x90 };
+                    WriteProcessMemory(GetCurrentProcess(), (void *) addr, patch, sizeof(patch), nullptr);
+
+                    MessageBox(nullptr, std::format("patch success\nat: 0x{:016X}", rva).c_str(), "patch", MB_OK);
+                }
             }
 
             break;
