@@ -142,7 +142,8 @@ void setupFunctions() {
 
 std::vector<size_t> RVAs = {
     0x147c80, // 1.15.12
-    0x1948A0  // 1.16.2
+    0x1948A0, // 1.16.2
+    0x1A1850  // 1.16.3
 };
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {

@@ -1,3 +1,34 @@
+### 1.16.3
+
+SandMan.exe version: 1.16.3 x64 windows
+
+`RVA: 0x1A1850`
+
+```text
+00007FF6CFCF1850 | 48:895C24 08             | mov qword ptr ss:[rsp+8],rbx            
+00007FF6CFCF1855 | 48:897424 10             | mov qword ptr ss:[rsp+10],rsi           
+00007FF6CFCF185A | 48:897C24 18             | mov qword ptr ss:[rsp+18],rdi           
+00007FF6CFCF185F | 55                       | push rbp                                
+00007FF6CFCF1860 | 41:54                    | push r12                                
+00007FF6CFCF1862 | 41:55                    | push r13                                
+00007FF6CFCF1864 | 41:56                    | push r14                                
+00007FF6CFCF1866 | 41:57                    | push r15                                
+00007FF6CFCF1868 | 48:8D6C24 D0             | lea rbp,qword ptr ss:[rsp-30]           
+00007FF6CFCF186D | 48:81EC 30010000         | sub rsp,130                             
+00007FF6CFCF1874 | 48:8B05 85901E00         | mov rax,qword ptr ds:[7FF6CFEDA900]     
+00007FF6CFCF187B | 48:33C4                  | xor rax,rsp                             
+00007FF6CFCF187E | 48:8945 20               | mov qword ptr ss:[rbp+20],rax           
+00007FF6CFCF1882 | 44:0FB6E1                | movzx r12d,cl                           
+00007FF6CFCF1886 | 45:33F6                  | xor r14d,r14d                           
+00007FF6CFCF1889 | 44:897424 48             | mov dword ptr ss:[rsp+48],r14d          
+00007FF6CFCF188E | 45:32ED                  | xor r13b,r13b                           
+00007FF6CFCF1891 | F605 48F41E00 01         | test byte ptr ds:[7FF6CFEE0CE0],1       
+```
+
+```text
+48 89 5C 24 08 48 89 74 24 10 48 89 7C 24 18 55 41 54 41 55 41 56 41 57 48 8D 6C 24 D0 48 81 EC 30 01 00 00 48 8B 05 85 90 1E 00 48 33 C4 48 89 45 20 44 0F B6 E1 45 33 F6 44 89 74 24 48 45 32 ED F6 05 48 F4 1E 00 01
+```
+
 ### 1.16.2
 
 SandMan.exe version: 1.16.2 x64 windows
