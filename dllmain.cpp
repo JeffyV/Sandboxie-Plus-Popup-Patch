@@ -143,7 +143,8 @@ void setupFunctions() {
 std::vector<size_t> RVAs = {
     0x147c80, // 1.15.12
     0x1948A0, // 1.16.2
-    0x1A1850  // 1.16.3
+    0x1A1850, // 1.16.3
+    0x1B2400  // 1.16.5
 };
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
@@ -166,7 +167,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
                     uint8_t patch[] = { 0xB0, 0x00, 0xC3, 0x90, 0x90 };
                     WriteProcessMemory(GetCurrentProcess(), (void *) addr, patch, sizeof(patch), nullptr);
 
-                    MessageBox(nullptr, std::format("patch success\nat: 0x{:016X}", rva).c_str(), "patch", MB_OK);
+                    // MessageBox(nullptr, std::format("patch success\nat: 0x{:016X}", rva).c_str(), "patch", MB_OK);
                 }
             }
 
