@@ -148,6 +148,7 @@ std::vector<size_t> RVAs = {
     0x1B2400, // 1.16.5
     0x1B3D60, // 1.16.8
     0x1B4030, // 1.16.9
+    0x1B5020, // 1.17.2
 };
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
